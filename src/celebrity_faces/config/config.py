@@ -10,10 +10,14 @@ DATA_PATH = PACKAGE_ROOT / "data"
 MODEL_PATH = PACKAGE_ROOT / "model"
 METRICS_PATH = PACKAGE_ROOT / "metrics"
 
-IMG_ROOT = DATA_PATH / "raw" / "Celebrity Faces Dataset"
+IMAGE_ROOT = DATA_PATH / "raw" / "Celebrity Faces Dataset"
 LABELS = [
     "Angelina Jolie", "Kate Winslet", "Natalie Portman", "Nicole Kidman", "Sandra Bullock",
     "Brad Pitt", "Johnny Depp", "Leonardo DiCaprio", "Tom Cruise", "Tom Hanks"
 ]
 LABEL_MAP = { LABELS[idx]: idx for idx in range(len(LABELS)) }
 NEW_SIZE = (160, 160) # Final image size for preprocessing
+
+TRAIN_SPLIT = 0.7
+VAL_SPLIT = 0.15
+TEST_SPLIT = 0.15
