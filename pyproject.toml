@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
 [project]
 name = "celebrity-faces"
 version = "0.1.0"
@@ -20,10 +24,6 @@ classifiers = [
 ]
 license-files = ["LICEN[CS]E*"]
 
-[project.urls]
-Homepage = "https://github.com/babaksoft/celebrity-faces"
-Issues = "https://github.com/babaksoft/celebrity-faces/issues"
-
 dependencies = [
 "numpy==2.3.4",
 "pandas==2.3.3",
@@ -38,13 +38,16 @@ dependencies = [
 "tqdm==4.67.1"
 ]
 
+[project.urls]
+Homepage = "https://github.com/babaksoft/celebrity-faces"
+Issues = "https://github.com/babaksoft/celebrity-faces/issues"
+
 [project.optional-dependencies]
 build = ["build"]
 dev = ["pytest"]
 
-[build-system]
-requires = ["hatchling >= 1.26"]
-build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["src/celebrity_faces"]
 
 [tool.hatch.build]
 exclude = [

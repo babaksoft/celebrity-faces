@@ -2,11 +2,11 @@
 
 TODO: Briefly introduce this project
 
-![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https://github.com/babaksoft/ml-project/raw/refs/heads/master/pyproject.toml)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https://github.com/babaksoft/celebrity-faces/raw/refs/heads/master/pyproject.toml)
 ![Static Badge](https://img.shields.io/badge/task-classification-orange)
 ![Static Badge](https://img.shields.io/badge/framework-tensorflow-orange)
-![GitHub License](https://img.shields.io/github/license/babaksoft/ml-project)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/babaksoft/ml-project/build.yml)
+![GitHub License](https://img.shields.io/github/license/babaksoft/celebrity-faces)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/babaksoft/celebrity-faces/build.yml)
 
 
 ## Business problem
@@ -15,7 +15,7 @@ TODO: Briefly introduce this project
 
 ## Dataset summary
 
-(TODO: Provide a quick introduction of dataset features and target in tabular markdown format)
+(TODO: Provide a quick introduction of dataset features and target in tabular Markdown format)
 
 ## Performance metric(s)
 
@@ -23,7 +23,7 @@ TODO: Briefly introduce this project
 
 ## Final model
 
-(TODO: Write a short paragraph about the final model, display overall metrics in tabular markdown format)
+(TODO: Write a short paragraph about the final model, display overall metrics in tabular Markdown format)
 
 ### Confusion matrix
 
