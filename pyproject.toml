@@ -1,0 +1,59 @@
+[project]
+name = "celebrity-faces"
+version = "0.1.0"
+description = "An image classification project trained on a subset of Celebrity Faces dataset from Kaggle"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+  { name="babaksoft", email="babak.eslamieh@gmail.com" },
+]
+keywords = ["machine learning", "classification"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/babaksoft/celebrity-faces"
+Issues = "https://github.com/babaksoft/celebrity-faces/issues"
+
+dependencies = [
+"numpy==2.3.4",
+"pandas==2.3.3",
+"scipy==1.16.2",
+"matplotlib==3.10.7",
+"scikit-learn==1.7.2",
+"seaborn==0.13.2",
+"pytest==9.0.2",
+"joblib==1.5.2",
+"tensorflow==2.20.0",
+"keras==3.13.0",
+"tqdm==4.67.1"
+]
+
+[project.optional-dependencies]
+build = ["build"]
+dev = ["pytest"]
+
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+exclude = [
+    "/.dvc",
+    "**/*.dvc",
+    "**/.gitignore",
+    "/notebooks",
+    "/tests",
+    ".gitignore",
+    ".dvcignore",
+    "requirements.txt"
+]
