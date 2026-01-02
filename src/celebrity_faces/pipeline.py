@@ -26,7 +26,6 @@ class Pipeline:
             config.DATA_PATH / "train",
             labels="inferred",
             label_mode="int",
-            class_names=config.LABELS,
             batch_size=config.BATCH_SIZE,
             image_size=config.IMAGE_SIZE,
             shuffle=True,
@@ -34,6 +33,7 @@ class Pipeline:
             data_format="channels_last",
             verbose=False
         )
+        self.train_labels = ds.class_names
 
         # Rescale to achieve more stable convergence
         ds = ds.map(
@@ -41,14 +41,18 @@ class Pipeline:
             num_parallel_calls=config.AUTOTUNE
         )
 
+        # Prepare for performance optimization BEFORE data augmentation
+        ds = ds.cache()
+        ds = ds.shuffle(500)
+
         # Perform data augmentation, ONLY on train set, ONLY during training
         ds = ds.map(
             lambda x, y: (self._layers["augmentation"](x, training=True), y),
             num_parallel_calls=config.AUTOTUNE
         )
 
-        # Optimize performance by caching and prefetching
-        ds = ds.cache().shuffle(500).prefetch(config.AUTOTUNE)
+        # Allow CPU/GPU cooperation by prefetching
+        ds = ds.prefetch(config.AUTOTUNE)
 
         return ds
 
@@ -58,7 +62,6 @@ class Pipeline:
             config.DATA_PATH / "validation",
             labels="inferred",
             label_mode="int",
-            class_names=config.LABELS,
             batch_size=config.BATCH_SIZE,
             image_size=config.IMAGE_SIZE,
             shuffle=False,
@@ -66,6 +69,7 @@ class Pipeline:
             data_format="channels_last",
             verbose=False
         )
+        self.val_labels = ds.class_names
 
         # Rescale to achieve more stable convergence
         ds = ds.map(
@@ -84,7 +88,6 @@ class Pipeline:
             config.DATA_PATH / "test",
             labels="inferred",
             label_mode="int",
-            class_names=config.LABELS,
             batch_size=config.BATCH_SIZE,
             image_size=config.IMAGE_SIZE,
             shuffle=False,
@@ -92,6 +95,7 @@ class Pipeline:
             data_format="channels_last",
             verbose=False
         )
+        self.test_labels = ds.class_names
 
         # Rescale to achieve more stable convergence
         ds = ds.map(
