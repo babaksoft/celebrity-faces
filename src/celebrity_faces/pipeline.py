@@ -12,7 +12,7 @@ class Pipeline:
             "rescaling": Rescaling(1./255),
             "augmentation": Sequential([
                 RandomRotation(0.1),
-                RandomFlip("horizontal")
+                RandomFlip("horizontal"),
             ])
         }
 
@@ -41,18 +41,7 @@ class Pipeline:
             num_parallel_calls=config.AUTOTUNE
         )
 
-        # Prepare for performance optimization BEFORE data augmentation
-        ds = ds.cache()
-        ds = ds.shuffle(500)
-
-        # Perform data augmentation, ONLY on train set, ONLY during training
-        ds = ds.map(
-            lambda x, y: (self._layers["augmentation"](x, training=True), y),
-            num_parallel_calls=config.AUTOTUNE
-        )
-
-        # Allow CPU/GPU cooperation by prefetching
-        ds = ds.prefetch(config.AUTOTUNE)
+        ds = ds.cache().prefetch(config.AUTOTUNE)
 
         return ds
 
@@ -77,7 +66,6 @@ class Pipeline:
             num_parallel_calls=config.AUTOTUNE
         )
 
-        # Optimize performance by caching and prefetching
         ds = ds.cache().prefetch(config.AUTOTUNE)
 
         return ds
