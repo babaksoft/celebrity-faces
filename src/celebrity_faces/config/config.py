@@ -27,5 +27,5 @@ TEST_SPLIT = 0.15
 
 # Data processing
 IMAGE_SIZE = (160, 160)
-BATCH_SIZE = 8
+BATCH_SIZE = 16
 AUTOTUNE = tf.data.AUTOTUNE

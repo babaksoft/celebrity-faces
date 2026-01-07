@@ -1,108 +1,52 @@
 from tensorflow.keras.utils \
     import set_random_seed, image_dataset_from_directory
-from tensorflow.keras.layers import Rescaling, RandomRotation, RandomFlip
-from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Rescaling
 
 from .config import config
 
 
-class Pipeline:
-    def __init__(self):
-        self._layers = {
-            "rescaling": Rescaling(1./255),
-            "augmentation": Sequential([
-                RandomRotation(0.1),
-                RandomFlip("horizontal"),
-            ])
-        }
+# Pipeline with a single function : bare minimum
+def get_pipeline():
+    train_ds = image_dataset_from_directory(
+        config.DATA_PATH / "train",
+        labels="inferred",
+        label_mode="int",
+        batch_size=config.BATCH_SIZE,
+        image_size=config.IMAGE_SIZE,
+        shuffle=True,
+        crop_to_aspect_ratio=True,
+        data_format="channels_last",
+        verbose=False
+    )
 
-        self.train_ds = self._train_pipeline()
-        self.val_ds = self._val_pipeline()
-        self.test_ds = self._test_pipeline()
+    val_ds = image_dataset_from_directory(
+        config.DATA_PATH / "validation",
+        labels="inferred",
+        label_mode="int",
+        batch_size=config.BATCH_SIZE,
+        image_size=config.IMAGE_SIZE,
+        shuffle=False,
+        crop_to_aspect_ratio=True,
+        data_format="channels_last",
+        verbose=False
+    )
 
-    def _train_pipeline(self):
-        # Load train set with shuffling
-        ds = image_dataset_from_directory(
-            config.DATA_PATH / "train",
-            labels="inferred",
-            label_mode="int",
-            batch_size=config.BATCH_SIZE,
-            image_size=config.IMAGE_SIZE,
-            shuffle=True,
-            crop_to_aspect_ratio=True,
-            data_format="channels_last",
-            verbose=False
-        )
-        self.train_labels = ds.class_names
+    norm_layer = Rescaling(1. / 255)
+    train_ds = train_ds.map(lambda x, y: (norm_layer(x), y))
+    val_ds = val_ds.map(lambda x, y: (norm_layer(x), y))
 
-        # Rescale to achieve more stable convergence
-        ds = ds.map(
-            lambda x, y: (self._layers["rescaling"](x), y),
-            num_parallel_calls=config.AUTOTUNE
-        )
-
-        ds = ds.cache().prefetch(config.AUTOTUNE)
-
-        return ds
-
-    def _val_pipeline(self):
-        # Load validation set without shuffling
-        ds = image_dataset_from_directory(
-            config.DATA_PATH / "validation",
-            labels="inferred",
-            label_mode="int",
-            batch_size=config.BATCH_SIZE,
-            image_size=config.IMAGE_SIZE,
-            shuffle=False,
-            crop_to_aspect_ratio=True,
-            data_format="channels_last",
-            verbose=False
-        )
-        self.val_labels = ds.class_names
-
-        # Rescale to achieve more stable convergence
-        ds = ds.map(
-            lambda x, y: (self._layers["rescaling"](x), y),
-            num_parallel_calls=config.AUTOTUNE
-        )
-
-        ds = ds.cache().prefetch(config.AUTOTUNE)
-
-        return ds
-
-    def _test_pipeline(self):
-        # Load test set without shuffling
-        ds = image_dataset_from_directory(
-            config.DATA_PATH / "test",
-            labels="inferred",
-            label_mode="int",
-            batch_size=config.BATCH_SIZE,
-            image_size=config.IMAGE_SIZE,
-            shuffle=False,
-            crop_to_aspect_ratio=True,
-            data_format="channels_last",
-            verbose=False
-        )
-        self.test_labels = ds.class_names
-
-        # Rescale to achieve more stable convergence
-        ds = ds.map(
-            lambda x, y: (self._layers["rescaling"](x), y),
-            num_parallel_calls=config.AUTOTUNE
-        )
-
-        # Optimize performance by caching and prefetching
-        ds = ds.cache().prefetch(config.AUTOTUNE)
-
-        return ds
+    return {
+        "train": train_ds,
+        "val": val_ds
+    }
 
 
 set_random_seed(config.RANDOM_STATE)
-pipeline = Pipeline()
+pipeline = get_pipeline()
 
 
 def pipeline_smoke_test():
-    for images, labels in pipeline.train_ds.take(1):
+    for images, labels in pipeline["train"].take(1):
         print(images.numpy().shape, labels.numpy().shape)
 
 
