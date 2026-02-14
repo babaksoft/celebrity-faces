@@ -2,7 +2,8 @@ from pathlib import Path
 
 import tensorflow as tf
 
-
+# Global config
+MLFLOW_TRACKING_URI = "http://localhost:5000"
 RANDOM_STATE = 147
 PROJECT_NAME = "celebrity-faces"
 
@@ -27,5 +28,5 @@ TEST_SPLIT = 0.15
 
 # Data processing
 IMAGE_SIZE = (160, 160)
-BATCH_SIZE = 16
+BATCH_SIZE = 8
 AUTOTUNE = tf.data.AUTOTUNE
