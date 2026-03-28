@@ -16,10 +16,18 @@ IMAGE_ROOT = DATA_PATH / "raw" / "Celebrity Faces Dataset"
 
 # Selected classes and encoded labels
 LABELS = [
-    "Angelina Jolie", "Kate Winslet", "Natalie Portman", "Nicole Kidman", "Sandra Bullock",
-    "Brad Pitt", "Johnny Depp", "Leonardo DiCaprio", "Tom Cruise", "Tom Hanks"
+    "Angelina Jolie",
+    "Kate Winslet",
+    "Natalie Portman",
+    "Nicole Kidman",
+    "Sandra Bullock",
+    "Brad Pitt",
+    "Johnny Depp",
+    "Leonardo DiCaprio",
+    "Tom Cruise",
+    "Tom Hanks",
 ]
-LABEL_MAP = { LABELS[idx]: idx for idx in range(len(LABELS)) }
+LABEL_MAP = {LABELS[idx]: idx for idx in range(len(LABELS))}
 
 # Dataset splitting
 TRAIN_SPLIT = 0.7

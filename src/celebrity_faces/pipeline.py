@@ -1,5 +1,4 @@
-from tensorflow.keras.utils \
-    import set_random_seed, image_dataset_from_directory
+from tensorflow.keras.utils import set_random_seed, image_dataset_from_directory
 from tensorflow.keras.layers import Rescaling
 
 from .config import config
@@ -16,7 +15,7 @@ def get_pipeline():
         shuffle=True,
         crop_to_aspect_ratio=True,
         data_format="channels_last",
-        verbose=False
+        verbose=False,
     )
 
     val_ds = image_dataset_from_directory(
@@ -28,17 +27,14 @@ def get_pipeline():
         shuffle=False,
         crop_to_aspect_ratio=True,
         data_format="channels_last",
-        verbose=False
+        verbose=False,
     )
 
-    norm_layer = Rescaling(1. / 255)
+    norm_layer = Rescaling(1.0 / 255)
     train_ds = train_ds.map(lambda x, y: (norm_layer(x), y))
     val_ds = val_ds.map(lambda x, y: (norm_layer(x), y))
 
-    return {
-        "train": train_ds,
-        "val": val_ds
-    }
+    return {"train": train_ds, "val": val_ds}
 
 
 set_random_seed(config.RANDOM_STATE)

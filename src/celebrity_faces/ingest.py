@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from .config import  config
+from .config import config
 
 
 def copy_images(src_dir, dest_dir, files):
@@ -19,15 +19,21 @@ def ingest():
             train_idx = int(config.TRAIN_SPLIT * count)
             val_idx = int(config.VAL_SPLIT * count)
             test_idx = int(config.TEST_SPLIT * count)
-            copy_images(config.IMAGE_ROOT / dir_name,
-                        config.DATA_PATH / "train" / dir_name,
-                        files[:train_idx])
-            copy_images(config.IMAGE_ROOT / dir_name,
-                        config.DATA_PATH / "validation" / dir_name,
-                        files[train_idx:train_idx + val_idx])
-            copy_images(config.IMAGE_ROOT / dir_name,
-                        config.DATA_PATH / "test" / dir_name,
-                        files[-test_idx:])
+            copy_images(
+                config.IMAGE_ROOT / dir_name,
+                config.DATA_PATH / "train" / dir_name,
+                files[:train_idx],
+            )
+            copy_images(
+                config.IMAGE_ROOT / dir_name,
+                config.DATA_PATH / "validation" / dir_name,
+                files[train_idx : train_idx + val_idx],
+            )
+            copy_images(
+                config.IMAGE_ROOT / dir_name,
+                config.DATA_PATH / "test" / dir_name,
+                files[-test_idx:],
+            )
 
 
 def main():
@@ -39,5 +45,6 @@ def main():
     ingest()
     print("[INFO] Raw dataset was successfully ingested.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

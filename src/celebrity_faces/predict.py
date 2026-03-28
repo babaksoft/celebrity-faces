@@ -1,6 +1,5 @@
-
 def make_prediction():
-    return { "prediction": "Positive" }
+    return {"prediction": "Positive"}
 
 
 def predict():
@@ -12,5 +11,5 @@ def main():
     print(prediction)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
