@@ -25,37 +25,34 @@ classifiers = [
 license-files = ["LICEN[CS]E*"]
 
 dependencies = [
-    "numpy==2.3.4",
-    "pandas==2.3.3",
-    "scipy==1.16.2",
-    "matplotlib==3.10.7",
-    "scikit-learn==1.7.2",
-    "seaborn==0.13.2",
-    "pytest==9.0.2",
-    "joblib==1.5.2",
-    "mlflow==3.6.0",
-    "mlflow-skinny==3.6.0",
     "tensorflow[and-cuda]==2.20.0",
-    "keras==3.13.0",
-    "tqdm==4.67.1",
+    "torch==2.9.0",
+    "torchvision==0.24.0",
+    "pytorch-lightning==2.6.1",
+    "matplotlib==3.10.7",
+    "mlflow==3.10.0",
     "pathspec==0.11.2",
     "dvc==3.65.0",
     "dvc-s3==3.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
     "black==23.12.1",
     "ruff==0.15.7",
     "mypy==1.19.1",
+    "isort==8.0.1",
     "pytest==9.0.2",
+]
+
+build = [
     "build==1.3.0",
-    "hatchling==1.28.0"
+    "hatchling==1.28.0",
 ]
 
 [project.urls]
 Homepage = "https://github.com/babaksoft/celebrity-faces"
 Issues = "https://github.com/babaksoft/celebrity-faces/issues"
-
-[project.optional-dependencies]
-build = ["build"]
-dev = ["pytest"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/celebrity_faces"]
