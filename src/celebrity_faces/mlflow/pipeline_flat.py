@@ -1,7 +1,7 @@
 from tensorflow.keras.utils import set_random_seed, image_dataset_from_directory
 from tensorflow.keras.layers import Rescaling
 
-from ..config import config
+from celebrity_faces.config import config
 
 
 # Pipeline with a single function : bare minimum

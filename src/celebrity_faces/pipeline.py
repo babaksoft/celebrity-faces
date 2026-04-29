@@ -1,7 +1,7 @@
 from tensorflow.keras.utils import set_random_seed, image_dataset_from_directory
 from tensorflow.keras.layers import Rescaling
 
-from .config import config
+from celebrity_faces.config import config
 
 
 # Pipeline with a single function : bare minimum
@@ -43,7 +43,10 @@ pipeline = get_pipeline()
 
 def pipeline_smoke_test():
     for images, labels in pipeline["train"].take(1):
-        print(images.numpy().shape, labels.numpy().shape)
+        print("\n-------------------------------------------")
+        print("Input  (image batch) shape :", images.numpy().shape)
+        print("Output (label batch) shape :", labels.numpy().shape)
+        print("-------------------------------------------\n")
 
 
 if __name__ == "__main__":

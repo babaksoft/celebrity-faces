@@ -11,8 +11,8 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 import mlflow
 
-from ..config import config
-from .pipeline import pipeline
+from celebrity_faces.config import config
+from celebrity_faces.mlflow.pipeline import pipeline
 
 
 def baseline_model(in_shape):

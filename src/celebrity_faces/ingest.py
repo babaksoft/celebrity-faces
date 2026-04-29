@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from .config import config
+from celebrity_faces.config import config
 
 
 def copy_images(src_dir, dest_dir, files):

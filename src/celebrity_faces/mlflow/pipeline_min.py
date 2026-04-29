@@ -2,7 +2,7 @@ from tensorflow.keras.utils import set_random_seed, image_dataset_from_directory
 from tensorflow.keras.layers import Rescaling, RandomRotation, RandomFlip
 from tensorflow.keras.models import Sequential
 
-from ..config import config
+from celebrity_faces.config import config
 
 
 class Pipeline:
