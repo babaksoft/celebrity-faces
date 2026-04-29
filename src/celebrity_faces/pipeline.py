@@ -1,5 +1,5 @@
-from tensorflow.keras.utils import set_random_seed, image_dataset_from_directory
 from tensorflow.keras.layers import Rescaling
+from tensorflow.keras.utils import image_dataset_from_directory, set_random_seed
 
 from celebrity_faces.config import config
 

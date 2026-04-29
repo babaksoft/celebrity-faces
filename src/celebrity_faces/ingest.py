@@ -19,20 +19,21 @@ def ingest():
             train_idx = int(config.TRAIN_SPLIT * count)
             val_idx = int(config.VAL_SPLIT * count)
             test_idx = int(config.TEST_SPLIT * count)
+            files_sorted = sorted(files)
             copy_images(
                 config.IMAGE_ROOT / dir_name,
                 config.DATA_PATH / "train" / dir_name,
-                files[:train_idx],
+                files_sorted[:train_idx],
             )
             copy_images(
                 config.IMAGE_ROOT / dir_name,
                 config.DATA_PATH / "validation" / dir_name,
-                files[train_idx : train_idx + val_idx],
+                files_sorted[train_idx : train_idx + val_idx],
             )
             copy_images(
                 config.IMAGE_ROOT / dir_name,
                 config.DATA_PATH / "test" / dir_name,
-                files[-test_idx:],
+                files_sorted[-test_idx:],
             )
 
 

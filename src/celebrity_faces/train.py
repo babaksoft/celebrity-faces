@@ -1,11 +1,16 @@
 from functools import partial
 
-from tensorflow.keras.layers import Input, Conv2D, MaxPool2D, Dense
-from tensorflow.keras.layers import GlobalAveragePooling2D
+import mlflow
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tensorflow.keras.layers import (
+    Conv2D,
+    Dense,
+    GlobalAveragePooling2D,
+    Input,
+    MaxPool2D,
+)
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
-import mlflow
 
 from celebrity_faces.config import config
 from celebrity_faces.pipeline import pipeline

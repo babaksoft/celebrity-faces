@@ -1,7 +1,5 @@
 from pathlib import Path
 
-import tensorflow as tf
-
 # Global config
 MLFLOW_TRACKING_URI = "http://localhost:5000"
 RANDOM_STATE = 147
@@ -30,11 +28,10 @@ LABELS = [
 LABEL_MAP = {LABELS[idx]: idx for idx in range(len(LABELS))}
 
 # Dataset splitting
-TRAIN_SPLIT = 0.7
-VAL_SPLIT = 0.15
-TEST_SPLIT = 0.15
+TRAIN_SPLIT = 0.8
+VAL_SPLIT = 0.1
+TEST_SPLIT = 0.1
 
 # Data processing
 IMAGE_SIZE = (160, 160)
 BATCH_SIZE = 8
-AUTOTUNE = tf.data.AUTOTUNE
