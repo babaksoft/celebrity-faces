@@ -1,14 +1,15 @@
 from functools import partial
+
 from tensorflow.keras.layers import (
     Conv2D,
-    RandomRotation,
-    RandomFlip,
-    RandomSharpness,
-    MaxPool2D,
     Dense,
     Dropout,
-    Input,
     GlobalAveragePooling2D,
+    Input,
+    MaxPool2D,
+    RandomFlip,
+    RandomRotation,
+    RandomSharpness,
 )
 from tensorflow.keras.models import Sequential
 
