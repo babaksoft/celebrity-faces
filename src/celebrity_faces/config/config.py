@@ -9,6 +9,7 @@ PROJECT_NAME = "celebrity-faces"
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PACKAGE_ROOT / "data"
 MODEL_DIR = PACKAGE_ROOT / "model"
+ARTIFACTS_DIR = PACKAGE_ROOT / "artifacts"
 METRICS_DIR = PACKAGE_ROOT / "metrics"
 IMAGE_ROOT = DATA_DIR / "raw" / "Celebrity Faces Dataset"
 

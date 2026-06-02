@@ -23,7 +23,7 @@ class Pipeline:
             batch_size=config.BATCH_SIZE,
             image_size=config.IMAGE_SIZE,
             shuffle=True,
-            seed = config.RANDOM_SEED,
+            seed=config.RANDOM_SEED,
             crop_to_aspect_ratio=True,
             data_format="channels_last",
             verbose=False,
@@ -31,10 +31,7 @@ class Pipeline:
         self.train_labels = ds.class_names
 
         # Rescale to achieve more stable convergence
-        ds = ds.map(
-            lambda x, y: (self._rescaling(x), y),
-            num_parallel_calls=1
-        )
+        ds = ds.map(lambda x, y: (self._rescaling(x), y), num_parallel_calls=1)
 
         return ds
 
@@ -54,10 +51,7 @@ class Pipeline:
         self.val_labels = ds.class_names
 
         # Rescale
-        ds = ds.map(
-            lambda x, y: (self._rescaling(x), y),
-            num_parallel_calls=1
-        )
+        ds = ds.map(lambda x, y: (self._rescaling(x), y), num_parallel_calls=1)
 
         return ds
 
@@ -77,12 +71,10 @@ class Pipeline:
         self.test_labels = ds.class_names
 
         # Rescale
-        ds = ds.map(
-            lambda x, y: (self._rescaling(x), y),
-            num_parallel_calls=1
-        )
+        ds = ds.map(lambda x, y: (self._rescaling(x), y), num_parallel_calls=1)
 
         return ds
+
 
 set_random_seed(config.RANDOM_SEED)
 
