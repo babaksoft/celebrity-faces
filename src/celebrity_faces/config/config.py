@@ -2,17 +2,17 @@ from pathlib import Path
 
 # Global config
 MLFLOW_TRACKING_URI = "http://localhost:5000"
-RANDOM_STATE = 147
+RANDOM_SEED = 147
 PROJECT_NAME = "celebrity-faces"
 
 # Project structure
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
-DATA_PATH = PACKAGE_ROOT / "data"
-MODEL_PATH = PACKAGE_ROOT / "model"
-METRICS_PATH = PACKAGE_ROOT / "metrics"
-IMAGE_ROOT = DATA_PATH / "raw" / "Celebrity Faces Dataset"
+DATA_DIR = PACKAGE_ROOT / "data"
+MODEL_DIR = PACKAGE_ROOT / "model"
+METRICS_DIR = PACKAGE_ROOT / "metrics"
+IMAGE_ROOT = DATA_DIR / "raw" / "Celebrity Faces Dataset"
 
-# Selected classes and encoded labels
+# Selected classes
 LABELS = [
     "Angelina Jolie",
     "Kate Winslet",
@@ -25,7 +25,6 @@ LABELS = [
     "Tom Cruise",
     "Tom Hanks",
 ]
-LABEL_MAP = {LABELS[idx]: idx for idx in range(len(LABELS))}
 
 # Dataset splitting
 TRAIN_SPLIT = 0.8
@@ -33,5 +32,5 @@ VAL_SPLIT = 0.1
 TEST_SPLIT = 0.1
 
 # Data processing
-IMAGE_SIZE = (160, 160)
-BATCH_SIZE = 8
+IMAGE_SIZE = (200, 200)
+BATCH_SIZE = 16

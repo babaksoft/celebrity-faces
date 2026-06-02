@@ -54,6 +54,9 @@ build = [
 Homepage = "https://github.com/babaksoft/celebrity-faces"
 Issues = "https://github.com/babaksoft/celebrity-faces/issues"
 
+[tool.isort]
+profile = "black"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/celebrity_faces"]
 
