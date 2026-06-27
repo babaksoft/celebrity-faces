@@ -38,9 +38,10 @@ def plot_learning_curves(history: dict, experiment: str) -> str:
     ax[1].set(xlabel="Epoch", ylabel="Loss")
     ax[1].legend()
 
-    path = (
-        config.ARTIFACTS_DIR / f"lc_{experiment}.png"
-    )  # lc stands for learning curves
+    config.ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    # lc stands for learning curves
+    path = config.ARTIFACTS_DIR / f"lc_{experiment}.png"
     plt.savefig(path)
     plt.close()
     return path
