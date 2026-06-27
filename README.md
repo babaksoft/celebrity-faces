@@ -5,7 +5,7 @@
 ![Static Badge](https://img.shields.io/badge/framework-tensorflow-orange)
 ![Static Badge](https://img.shields.io/badge/framework-pytorch-orange)
 ![GitHub License](https://img.shields.io/github/license/babaksoft/celebrity-faces)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/babaksoft/celebrity-faces/build.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/babaksoft/celebrity-faces/ci.yml)
 
 
 ## Project Overview
