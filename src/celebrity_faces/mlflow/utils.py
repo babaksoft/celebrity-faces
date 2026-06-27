@@ -20,25 +20,21 @@ def train(model, pipeline, optimizer=Adam(learning_rate=3e-4), epochs=50):
     return history
 
 
-def plot_learning_curves(hist, experiment):
-    epochs = len(hist.history["loss"])
+def plot_learning_curves(history: dict, experiment: str) -> str:
+    epochs = len(history["loss"])
     fig, ax = plt.subplots(1, 2, figsize=(10, 6))
-    ax[0].plot(
-        range(1, epochs + 1), hist.history["accuracy"], "b-", label="Train accuracy"
-    )
+    ax[0].plot(range(1, epochs + 1), history["accuracy"], "b-", label="Train accuracy")
     ax[0].plot(
         range(1, epochs + 1),
-        hist.history["val_accuracy"],
+        history["val_accuracy"],
         "r-",
         label="Validation accuracy",
     )
     ax[0].set(xlabel="Epoch", ylabel="Accuracy")
     ax[0].legend()
 
-    ax[1].plot(range(1, epochs + 1), hist.history["loss"], "b-", label="Train loss")
-    ax[1].plot(
-        range(1, epochs + 1), hist.history["val_loss"], "r-", label="Validation loss"
-    )
+    ax[1].plot(range(1, epochs + 1), history["loss"], "b-", label="Train loss")
+    ax[1].plot(range(1, epochs + 1), history["val_loss"], "r-", label="Validation loss")
     ax[1].set(xlabel="Epoch", ylabel="Loss")
     ax[1].legend()
 

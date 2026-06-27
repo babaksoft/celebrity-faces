@@ -36,7 +36,7 @@ def train_model(model_fn, optimizer, run_name, artifact_name):
 
         model = model_fn(input_shape)
         history = train(model, pipeline, optimizer, EPOCHS)
-        art_path = plot_learning_curves(history, artifact_name)
+        art_path = plot_learning_curves(history.history, artifact_name)
         mlflow.log_artifact(local_path=art_path)
         mlflow.end_run()
 
@@ -58,12 +58,7 @@ def run():
 
     # Third run (Augmentation)
     optimizer = Adam(learning_rate=3e-4)
-    train_model(
-        new_baseline_augment,
-        optimizer,
-        "Augmentation",
-        "new_baseline_augment"
-    )
+    train_model(new_baseline_augment, optimizer, "Augmentation", "new_baseline_augment")
 
     # Fourth run (Dropout + Augmentation)
     optimizer = Adam(learning_rate=3e-4)

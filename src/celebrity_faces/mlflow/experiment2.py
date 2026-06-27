@@ -33,7 +33,9 @@ def train_model(optimizer, run_name):
         epochs = EPOCHS
 
         history = train(model, pipeline, optimizer, epochs)
-        art_path = plot_learning_curves(history, f"new_baseline_{run_name.lower()}")
+        art_path = plot_learning_curves(
+            history.history, f"new_baseline_{run_name.lower()}"
+        )
         mlflow.log_artifact(local_path=art_path)
         mlflow.end_run()
 

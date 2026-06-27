@@ -36,9 +36,11 @@ def run():
         epochs = 50
 
         history = train(model, pipeline, optimizer, epochs)
-        art_path = plot_learning_curves(history, "minimal_baseline")
+        art_path = plot_learning_curves(history.history, "minimal_baseline")
         mlflow.log_artifact(local_path=art_path)
         mlflow.end_run()
+
+    print("\n==== Experiment 1 (Minimal Baseline) completed. ====")
 
 
 if __name__ == "__main__":
