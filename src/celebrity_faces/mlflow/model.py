@@ -22,7 +22,7 @@ def_conv2d = partial(
     activation="relu",
 )
 
-# Normal augmeentation config
+# Normal augmentation config
 augmentation = Sequential(
     [
         RandomRotation(0.1),
@@ -30,7 +30,7 @@ augmentation = Sequential(
     ]
 )
 
-# Stronger augmeentation config
+# Stronger augmentation config
 augmentation_extra = Sequential(
     [
         RandomSharpness(
