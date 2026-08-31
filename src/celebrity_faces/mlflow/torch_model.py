@@ -4,8 +4,8 @@ and the logic for forward pass, loss calculation, and optimization configuration
 """
 
 import torch
-import torch.nn as nn
 from pytorch_lightning import LightningModule
+from torch import nn
 
 
 class FaceClassifier(LightningModule):

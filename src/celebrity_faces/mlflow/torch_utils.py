@@ -33,8 +33,8 @@ class HistoryCallback(Callback):
             elif hasattr(value, "item"):
                 value = value.item()
             self.history[key].append(float(value))
-        except Exception as e:
-            print(f"Warning: Could not log metric {key}. Error: {e}")
+        except (TypeError, ValueError, RuntimeError) as exc:
+            print(f"Warning: Could not log metric {key}. Error: {exc}")
 
     def on_train_epoch_end(self, trainer, pl_module):
         metrics = trainer.callback_metrics

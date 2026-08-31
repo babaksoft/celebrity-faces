@@ -3,8 +3,10 @@ from tensorflow.keras.optimizers import Adam
 
 from celebrity_faces.config import config
 
+OPTIMIZER = Adam(learning_rate=3e-4)
 
-def train(model, pipeline, optimizer=Adam(learning_rate=3e-4), epochs=50):
+
+def train(model, pipeline, optimizer=OPTIMIZER, epochs=50):
     model.compile(
         loss="sparse_categorical_crossentropy",
         optimizer=optimizer,
@@ -22,7 +24,7 @@ def train(model, pipeline, optimizer=Adam(learning_rate=3e-4), epochs=50):
 
 def plot_learning_curves(history: dict, experiment: str) -> str:
     epochs = len(history["loss"])
-    fig, ax = plt.subplots(1, 2, figsize=(10, 6))
+    _, ax = plt.subplots(1, 2, figsize=(10, 6))
     ax[0].plot(range(1, epochs + 1), history["accuracy"], "b-", label="Train accuracy")
     ax[0].plot(
         range(1, epochs + 1),
