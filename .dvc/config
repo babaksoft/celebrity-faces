@@ -1,6 +1,4 @@
 [core]
-    remote = local_storage
-['remote "local_storage"']
-    url = ../../_cf_dvc_
+    remote = aws_storage
 ['remote "aws_storage"']
     url = s3://babaksoft/ml-portfolio/celebrity-faces/dvc_sync
